@@ -1,3 +1,13 @@
+### Tempore
+
+Tempore is a very simple web app that list the virtual hosts.
+Tempore runs as the default server in /var/www if a default_host is not specified.
+docker-gen is used to generate the containers.js file.
+
+![simple tempore ui](http://i.imgur.com/dGAB8jo.png)
+
+### From jwilder/nginx-proxy
+
 ![nginx 1.9.2](https://img.shields.io/badge/nginx-1.9.2-brightgreen.svg) ![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)
 
 nginx-proxy sets up a container running nginx and [docker-gen][1].  docker-gen generates reverse proxy configs for nginx and reloads nginx when containers are started and stopped.
