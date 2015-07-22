@@ -136,7 +136,7 @@ server {
 	    server_name {{ $host }};
 	  {{ else }}
 	    server_name {{ $host }};
-          {{ end }}
+      {{ end }}
 	{{ else }}
 	  server_name {{ $host }};
 	{{ end }}
@@ -166,4 +166,20 @@ server {
 {{ end }}
 
 {{ end }}
+{{ end }}
+
+
+{{ if $.Env.DEFAULT_HOST }}
+{{ else }}
+server {
+    listen 80 default_server;
+
+    root /var/www/;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+}
 {{ end }}
