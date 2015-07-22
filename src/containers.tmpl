@@ -1,0 +1,23 @@
+
+
+
+var dockergen_ran = true,
+    cadvisor = true,
+    cadvisor_port = 8080,
+    dockerui = true,
+    dockerui_port = 9000,
+    containers = [
+{{ range $host, $containers := groupByMulti $ "Env.VIRTUAL_HOST" "," }}
+    {{ range $container := $containers }}
+        {
+            'id':'{{ $container.ID }}',
+            'host':'{{ $host }}',
+            'name':'{{ $container.Name }}',
+            'image':'{{ $container.Image }}',
+        },
+    {{end}}
+{{end}}
+    ];
+
+
+
