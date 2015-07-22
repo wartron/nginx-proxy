@@ -1,15 +1,18 @@
 
 
+var hostname = window.location.hostname || '192.168.1.102',
+    $tbody = null;
 
 $(document).ready(function(){
     if(dockergen_ran){
         $(".alert").alert('close');
     }
+    $tbody = $("#vhosts table tbody")
     buildList();
 });
 
 function buildList(){
-    $tbody = $("#vhosts table tbody")
+
     $tbody.empty()
 
     var c = containers.length;
@@ -49,13 +52,13 @@ function getLinks(container){
     html = '<td>';
 
     if(cadvisor)
-        html += '<a href="http://192.168.1.102:8080/docker/'+container.id+'">cAdvisor</a>'
+        html += '<a href="http://'+hostname+':'+cadvisor_port+'/docker/'+container.id+'">cAdvisor</a>'
 
     if(cadvisor && dockerui)
         html += " | ";
 
     if(dockerui)
-        html += '<a href="http://192.168.1.102:9000/#/containers/'+container.id+'/">DockerUI</a>'
+        html += '<a href="http://'+hostname+':'+dockerui_port+'/#/containers/'+container.id+'/">DockerUI</a>'
 
     html += '</td>';
     return html;
