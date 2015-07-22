@@ -1,11 +1,11 @@
 
 
 
-var dockergen_ran = true,
+var dockergenRan = true,
     cadvisor = true,
-    cadvisor_port = 8080,
-    dockerui = true,
-    dockerui_port = 9000,
+    cadvisorPort = 8080,
+    dockerUI = true,
+    dockerUIPort = 9000,
     containers = [
 {{ range $host, $containers := groupByMulti $ "Env.VIRTUAL_HOST" "," }}
     {{ range $container := $containers }}

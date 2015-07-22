@@ -3,62 +3,46 @@
 var hostname = window.location.hostname || '192.168.1.102',
     $tbody = null;
 
-$(document).ready(function(){
-    if(dockergen_ran){
+$(document).ready(function() {
+    if(dockergenRan)
         $(".alert").alert('close');
-    }
+
     $tbody = $("#vhosts table tbody")
     buildList();
 });
 
-function buildList(){
-
+function buildList() {
     $tbody.empty()
-
-    var c = containers.length;
-    for(var i=0;i<c;i++){
-        html = getRowHtml(containers[i]);
-        $tbody.append(html);
-    }
-
-
+    for(var i=0;i<containers.length;i++)
+        $tbody.append(getRowHtml(containers[i]));
 }
 
-function trimid(id){
-    return id.substr(0,12)
-}
-
-function getRowHtml(container){
-    html = '<tr>';
-    html += '<td>'+ trimid(container.id) + '</td>';
+function getRowHtml(container) {
+    var html = '<tr>';
+    html += '<td>'+ container.id.substr(0,12) + '</td>';
     html += '<td>'+ container.name + '</td>';
     html += getHostLink(container);
-
     html += '<td>'+ container.image + '</td>';
-
     html += getLinks(container);
     html +='</tr>';
-
-
     return html;
-
 }
 
-function getHostLink(container){
+function getHostLink(container) {
     return '<td><a href="http://'+container.host+'">'+container.host+'</a></td>';
 }
 
-function getLinks(container){
-    html = '<td>';
+function getLinks(container) {
+    var html = '<td>';
 
     if(cadvisor)
-        html += '<a href="http://'+hostname+':'+cadvisor_port+'/docker/'+container.id+'">cAdvisor</a>'
+        html += '<a href="http://'+hostname+':'+cadvisorPort+'/docker/'+container.id+'">cAdvisor</a>'
 
-    if(cadvisor && dockerui)
+    if(cadvisor && dockerUI)
         html += " | ";
 
-    if(dockerui)
-        html += '<a href="http://'+hostname+':'+dockerui_port+'/#/containers/'+container.id+'/">DockerUI</a>'
+    if(dockerUI)
+        html += '<a href="http://'+hostname+':'+dockerUIPort+'/#/containers/'+container.id+'/">DockerUI</a>'
 
     html += '</td>';
     return html;

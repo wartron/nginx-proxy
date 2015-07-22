@@ -1,10 +1,14 @@
 
+/*
+ * This file is an example of how the containers.js file should look.
+ * It will be overwritten by docker-gen
+ */
 
-var dockergen_ran = false,
+var dockergenRan = false,
     cadvisor = true,
-    cadvisor_port = 8080,
-    dockerui = true,
-    dockerui_port = 9000,
+    cadvisorPort = 8080,
+    dockerUI = true,
+    dockerUIPort = 9000,
     containers = [
         {
             'id':'35f9e80a5b858ec4cb99f63299fca1c8a9938825ced2e876311b161f70fc1f61',
